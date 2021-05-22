@@ -69,8 +69,38 @@ def pokupka_zerna():
         print('Я вас не понял милорд')
 
 
+def ivent_zemlya(zem):
+    """Исследователи находят сокровища с ед полученной земли"""
+    chance = random.random()
+    profit = 0
+    if chance >= 0.50:
+        if 0.5 <= chance <= 0.75:
+            profit = round(zem/2)
+        if 0.75 < chance <= 0.9:
+            profit = zem
+        if 0.9 < chance <= 0.975:
+            profit = 2*zem
+        if 0.975 < chance <= 1:
+            profit = 3*zem
+        return profit
+    else:
+        print('Исследователи не нашли ничего интересного')
+
+
 def issledovanie_zemel():
-    print('Сколько хотите потратить на исследования? ( 1 д.е. - 50% шанс получения 1 земли)')
+    zemlya = 0
+    money = input('Сколько хотите потратить на исследования? (1 д.е. - 50% шанс получения 1 земли,'
+                  ' c 1 полученной земли можно получить от 0 до земля * 2 жителей): ')
+    try:
+        money = int(money)
+    except ValueError:
+        print('Я вас не понял, милорд')
+        issledovanie_zemel()
+    for i in range(money):
+        if random.random() >= 0.5:
+            zemlya += 1
+    d['Казна'] = d['Казна'] - money
+    return zemlya
 
 
 print('Начало ( 0 год ):')
@@ -78,6 +108,7 @@ stats(d)
 c = 0
 while True:
     c += 1
+    print()
     print(c, 'ГОД:')
     default_changes()
     decision = moves()
@@ -86,4 +117,9 @@ while True:
             print('Как скажете, милорд')
         if number == 1:
             pokupka_zerna()
-
+        if number == 3:
+            zemlya = issledovanie_zemel()
+            d['Земля'] += zemlya
+            zhitely = random.randint(0, zemlya*2)
+            d['Народ'] += zhitely
+# смута в проц соотн например 4 жителя не поели => смута от проц не поевших жителей
