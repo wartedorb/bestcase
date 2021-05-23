@@ -7,6 +7,7 @@ from random import *
 from tkinter import *
 from math import *
 # 90% создано на мобильных устройствах
+
 d = dict()
 def s_info():
 
@@ -316,7 +317,7 @@ def next():
 	if c > 0:
 		default_changes()
 	global sum_zerno
-	if d['Казна'] > d['Народ']*150:
+	if d['Казна'] > d['Народ']*100:
 		btn_hd = Button(m_ww, text='устроить\nпраздник\n'+str(round(d['Казна']*0.25)), command=lambda:[hd(), btn_hd.destroy()])
 		btn_hd.grid(column=0, row=9)
 	updateinfo()
