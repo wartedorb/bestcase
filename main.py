@@ -6,7 +6,7 @@ KIRILL BYCHKOV - 60%
 from random import *
 from tkinter import *
 from math import *
-# 90% создано на мобильном устройстве
+# 90% создано на мобильных устройствах
 d = dict()
 def s_info():
 
